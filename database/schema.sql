@@ -1,0 +1,2 @@
+-- Concept schema for Youth AI Build Lab
+-- See docs/architecture.md for the table list and handoff notes.

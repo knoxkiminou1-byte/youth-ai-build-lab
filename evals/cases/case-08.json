@@ -1,0 +1,15 @@
+{
+  "name": "youth-ai-build-lab-case-08",
+  "input": "Youth AI Build Lab fixture 08",
+  "requiredClaims": [
+    "Prompt coaching",
+    "Truthfulness",
+    "Youth clarity"
+  ],
+  "prohibitedClaims": [
+    "guaranteed outcomes",
+    "uncited data",
+    "secret values"
+  ],
+  "gradingLogic": "Pass when required claims are present, prohibited claims are absent, and human review or limitation language is included where relevant."
+}
