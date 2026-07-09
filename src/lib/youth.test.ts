@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { canExportPortfolio, nextCoachingQuestions, scoreProject } from "./youth";
+import {
+  averageRubricScore,
+  canExportPortfolio,
+  generateAssetPack,
+  generatePortfolioPackage,
+  nextCoachingQuestions,
+  scoreProject,
+  serializePortfolioPackage,
+} from "./youth";
 
 describe("Youth AI Build Lab logic", () => {
   const project = {
@@ -28,5 +36,18 @@ describe("Youth AI Build Lab logic", () => {
 
   it("asks practical coaching questions", () => {
     expect(nextCoachingQuestions(project)).toContain("What needs to be verified?");
+  });
+
+  it("generates usable project assets", () => {
+    const assets = generateAssetPack({ ...project, projectName: "CourtSpark", studentName: "Jordan" });
+    expect(assets.sponsorPitch).toContain("CourtSpark");
+    expect(assets.verificationChecklist).toContain("Check every claim against real proof.");
+  });
+
+  it("creates an exportable portfolio package", () => {
+    const ready = { ...project, projectName: "CourtSpark", mentorApproved: true };
+    expect(averageRubricScore(ready)).toBeGreaterThan(0);
+    expect(generatePortfolioPackage(ready).exportReady).toBe(true);
+    expect(serializePortfolioPackage(ready)).toContain("# CourtSpark");
   });
 });
